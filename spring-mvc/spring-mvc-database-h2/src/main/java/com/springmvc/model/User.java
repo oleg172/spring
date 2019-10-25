@@ -6,7 +6,7 @@ import org.hibernate.validator.constraints.Range;
 public class User {
 
     @NotBlank(message = "User name can't be empty")
-    private String name;
+    public String name;
 
     @Range(min = 0, message = "User age can't be smaller than 0")
     private String age;
