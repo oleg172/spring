@@ -1,6 +1,6 @@
 package com.springmvc.controller;
 
-import com.springmvc.dao.UserDao;
+import com.springmvc.service.UserDao;
 import com.springmvc.model.User;
 import java.util.List;
 import javax.validation.Valid;

@@ -1,6 +1,6 @@
-package com.springmvc.dao.impl;
+package com.springmvc.service.impl;
 
-import com.springmvc.dao.UserDao;
+import com.springmvc.service.UserDao;
 import com.springmvc.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
