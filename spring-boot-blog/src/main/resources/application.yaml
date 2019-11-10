@@ -1,0 +1,12 @@
+## PostgreSQL
+spring:
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: "postgres"
+    password: "070172"
+    platform: postgres
