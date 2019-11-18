@@ -9,15 +9,15 @@ import java.lang.annotation.RetentionPolicy;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import static java.lang.annotation.ElementType.FIELD;
-import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.*;
 
 @Documented
 @Constraint(validatedBy = PasswordValidatorImp.class)
-@Target({METHOD, FIELD})
+@Target({TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PasswordValidator {
     String message() default "Invalid password";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
+
 }

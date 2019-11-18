@@ -5,16 +5,20 @@ import com.spring.blog.validator.PasswordValidator;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "users")
 @JsonIgnoreProperties(ignoreUnknown = true)
+@PasswordValidator
 public class User {
 
     @Id
@@ -33,28 +37,20 @@ public class User {
     private String name;
 
     @Column(nullable = false)
-    @NotBlank
-    @PasswordValidator
     private String password;
 
-    public Integer getId() {
-        return id;
-    }
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private AuthProvider provider;
 
-    public String getName() {
-        return name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
+    private String providerId;
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setName(String name) {
@@ -65,7 +61,35 @@ public class User {
         this.password = password;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setProvider(AuthProvider provider) {
+        this.provider = provider;
+    }
+
+    public void setProviderId(String providerId) {
+        this.providerId = providerId;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public AuthProvider getProvider() {
+        return provider;
+    }
+
+    public String getProviderId() {
+        return providerId;
     }
 }

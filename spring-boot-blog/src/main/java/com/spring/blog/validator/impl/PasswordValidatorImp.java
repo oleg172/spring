@@ -1,31 +1,34 @@
 package com.spring.blog.validator.impl;
 
 
+import com.spring.blog.model.AuthProvider;
+import com.spring.blog.model.User;
 import com.spring.blog.validator.PasswordValidator;
-import org.springframework.util.StringUtils;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
+import org.springframework.util.StringUtils;
 
-public class PasswordValidatorImp implements
-        ConstraintValidator<PasswordValidator, String> {
+public class PasswordValidatorImp implements ConstraintValidator<PasswordValidator, User> {
 
     private Integer minPasswordLength = 8;
 
     @Override
     public void initialize(PasswordValidator constraintAnnotation) {
-
     }
 
     @Override
-    public boolean isValid(String password, ConstraintValidatorContext constraintValidatorContext) {
-        if (StringUtils.isEmpty(password)) {
+    public boolean isValid(User user, ConstraintValidatorContext constraintValidatorContext) {
+
+        if (user.getProvider() != AuthProvider.local){
+            return true;
+        }
+        if (StringUtils.isEmpty(user.getPassword())) {
             return false;
         }
-        if (password.length() < minPasswordLength) {
+        if (user.getPassword().length() < minPasswordLength) {
             return false;
         }
-        return checkPassword(password);
+        return checkPassword(user.getPassword());
     }
 
     private static boolean checkPassword(String str) {
