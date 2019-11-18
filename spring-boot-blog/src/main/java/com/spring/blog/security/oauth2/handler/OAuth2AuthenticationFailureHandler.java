@@ -14,6 +14,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import static com.spring.blog.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository.REDIRECT_URI_PARAM_COOKIE_NAME;
 
+/**
+ * В случае любой ошибки во время аутентификации OAuth2 Spring Security вызывает метод onAuthenticationFailure
+ * Он отправляет пользователю сообщениее об ошибке, добавленным в строку запроса.
+ */
 @Component
 public class OAuth2AuthenticationFailureHandler extends SimpleUrlAuthenticationFailureHandler {
 

@@ -19,6 +19,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import static com.spring.blog.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository.REDIRECT_URI_PARAM_COOKIE_NAME;
 
+/**
+ * При успешной аутентификации Spring Security вызывает метод onAuthenticationSuccess
+ * В этом методе мы выполняем некоторые проверки, создаем токен аутентификации JWT и перенаправляем пользователя
+ * на redirect_uri, указанный клиентом, с токеном JWT, добавленным в строку запроса.
+ */
 @Component
 public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 

@@ -8,6 +8,19 @@ import org.springframework.security.oauth2.client.web.AuthorizationRequestReposi
 import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
 import org.springframework.stereotype.Component;
 
+/**
+ * Протокол OAuth2 рекомендует использовать state параметр для предотвращения атак CSRF. Во время аутентификации
+ * приложение отправляет этот параметр в запросе авторизации, а поставщик OAuth2 возвращает этот параметр без изменений
+ * в обратном вызове OAuth2.
+ * Приложение сравнивает значение state параметра, возвращенного поставщиком OAuth2, со значением, которое оно отправило
+ * изначально. Если они не совпадают, то запрос на аутентификацию отклоняется.
+ *
+ * Для достижения этого потока приложению необходимо где-то сохранить state параметр, чтобы впоследствии он мог
+ * сравнить его с состоянием, возвращенным поставщиком OAuth2.
+ *
+ * Мы будем хранить state и redirect_uri в недолговечном cookie. Следующий класс предоставляет функциональные
+ * возможности для хранения запроса авторизации в файлах cookie и его получения.
+ */
 @Component
 public class HttpCookieOAuth2AuthorizationRequestRepository implements AuthorizationRequestRepository<OAuth2AuthorizationRequest> {
 

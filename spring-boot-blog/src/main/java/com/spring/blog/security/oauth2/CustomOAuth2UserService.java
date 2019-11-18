@@ -18,6 +18,13 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+/**
+ * CustomOAuth2UserService наследуется от DefaultOAuth2UserService и имплементирует метод loadUser. Этот метод вызывается
+ * после получения токена доступа от поставщика OAuth2.
+ * В этом методе мы сначала получаем данные пользователя от поставщика OAuth2. Если пользователь с таким же адресом
+ * электронной почты уже существует в нашей базе данных, мы обновляем его данные, в противном случае
+ * мы регистрируем нового пользователя.
+ */
 @Service
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
