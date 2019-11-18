@@ -7,6 +7,8 @@ import com.spring.blog.payload.LoginRequest;
 import com.spring.blog.security.TokenProvider;
 import com.spring.blog.service.UserService;
 import javax.validation.Valid;
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/auth")
+@Slf4j
 public class AuthController {
 
     private UserService userService;
@@ -41,6 +44,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
+        log.info("User: {} try to login", loginRequest);
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginRequest.getEmail(),
@@ -56,6 +60,8 @@ public class AuthController {
 
     @PostMapping(value = "/signup")
     public ApiResponse<User> createUser(@Valid @RequestBody User user) {
+
+        log.info("User: {} signUp", user);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return new ApiResponse<>(HttpStatus.OK.value(), "User saved successfully.", userService.save(user));
     }

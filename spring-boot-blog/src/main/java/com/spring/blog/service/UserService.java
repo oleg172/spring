@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface UserService {
 
-    Optional<User> findById(Integer id) throws ResourceNotFoundException;
+    Optional<User> findById(Long id) throws ResourceNotFoundException;
 
     Optional<User> findByEmail(String email) throws ResourceNotFoundException;
 

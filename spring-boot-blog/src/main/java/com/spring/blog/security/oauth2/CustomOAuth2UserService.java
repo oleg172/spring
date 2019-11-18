@@ -78,7 +78,6 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         User user = new User();
 
         user.setProvider(AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId()));
-        user.setProviderId(oAuth2UserInfo.getId());
         user.setName(oAuth2UserInfo.getName());
         user.setEmail(oAuth2UserInfo.getEmail());
         return userRepository.save(user);
