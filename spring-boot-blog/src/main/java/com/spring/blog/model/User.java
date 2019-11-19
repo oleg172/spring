@@ -2,8 +2,7 @@ package com.spring.blog.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.spring.blog.validator.PasswordValidator;
-import lombok.Data;
-
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -13,10 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import lombok.Data;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -49,6 +49,6 @@ public class User extends BaseModel {
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
     )
-    private List<Role> roles;
+    private Set<Role> roles;
 
 }
