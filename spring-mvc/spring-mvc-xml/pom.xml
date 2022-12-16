@@ -9,7 +9,7 @@
 
     <properties>
         <jdk.version>1.8</jdk.version>
-        <spring.version>4.3.25.RELEASE</spring.version>
+        <spring.version>5.2.20.RELEASE</spring.version>
         <servletapi.version>2.5</servletapi.version>
         <jetty-maven-plugin.version>9.4.15.v20190215</jetty-maven-plugin.version>
     </properties>
